@@ -1,5 +1,5 @@
 -- ==============================================================
--- Verifica se l'utente corrente può usare dblink
+-- Verifica se l'utente corrente puo usare dblink
 -- Eseguire come utente dell'app (es. abb_prj_user)
 -- ==============================================================
 
