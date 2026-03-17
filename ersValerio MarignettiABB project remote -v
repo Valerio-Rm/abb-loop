@@ -1,9 +1,0 @@
-file:C:/Program Files/Git/etc/gitconfig	credential.helper manager-core
-file:C:/Program Files/Git/etc/gitconfig	credential.https://dev.azure.com.usehttppath true
-file:C:/Users/Valerio Marignetti/.gitconfig	user.name Valerio-Rm
-file:C:/Users/Valerio Marignetti/.gitconfig	user.email valerio.marignetti@gmail.com
-file:C:/Users/Valerio Marignetti/.gitconfig	credential.helper manager-core
-file:C:/Users/Valerio Marignetti/.gitconfig	includeif.gitdir:C:/Users/Valerio Marignetti/dloop/.path .gitconfig-bitbucket
-file:C:/Users/Valerio Marignetti/.gitconfig	includeif.gitdir:C:/Users/Valerio Marignetti/ABB project/.path .gitconfig-bitbucket
-file:C:/Users/Valerio Marignetti/.gitconfig-bitbucket	user.name Valerio Marignetti
-file:C:/Users/Valerio Marignetti/.gitconfig-bitbucket	user.email valerio.marignetti@decisyon.com
