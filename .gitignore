@@ -1,0 +1,15 @@
+# Secrets / local configuration
+config.env
+*.env
+*.local
+set_log_error_write_dblink_conn.local.sql
+
+# Pinggy token (encrypted) + any token files
+*.clixml
+pinggy_token.*
+pinggy/
+
+# Logs
+logs/
+*.log
+

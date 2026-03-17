@@ -1,0 +1,40 @@
+{
+  "mcpServers": {
+    "mssql_rcbo": {
+      "command": "npx",
+      "args": ["-y", "@liangshanli/mcp-server-mssqlserver"],
+      "env": {
+        "MSSQL_SERVER": "10.0.40.22",
+        "MSSQL_PORT": "1433",
+        "MSSQL_DATABASE": "rcbo",
+        "MSSQL_USER": "abb",
+        "MSSQL_PASSWORD": "Abb_Latina_2026!",
+        "MSSQL_ENCRYPT": "false"
+      }
+    },
+    "mssql_f200": {
+      "command": "npx",
+      "args": ["-y", "@liangshanli/mcp-server-mssqlserver"],
+      "env": {
+        "MSSQL_SERVER": "10.0.40.22",
+        "MSSQL_PORT": "1433",
+        "MSSQL_DATABASE": "f200",
+        "MSSQL_USER": "abb",
+        "MSSQL_PASSWORD": "Abb_Latina_2026!",
+        "MSSQL_ENCRYPT": "false"
+      }
+    },
+    "postgres_docker": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-postgres", "postgresql://abb_prj_user:abb_prj_user@localhost:5433/abb_prj_db"]
+    },
+    "postgres_dev": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-postgres", "postgresql://abb_prj_user:abb_prj_user@10.0.40.211:5432/abb_prj_db"]
+    },
+    "postgres_poc": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-postgres", "postgresql://abb_poc_user:abb_poc_user@10.0.40.211:5432/abb_poc_db"]
+    }
+  }
+}
