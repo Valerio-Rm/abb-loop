@@ -5435,47 +5435,7 @@ EXCEPTION WHEN OTHERS THEN
 END;
 $procedure$;
 
--- Audit table for lk_target (so that trigger can be created; 5_create_audit_tables also creates it for lk_% tables)
-DROP TABLE IF EXISTS application_audit.au_lk_target;
-CREATE TABLE application_audit.au_lk_target AS
-SELECT
-    target_id, plant_id, line_id, kpi_id, target_value_num,
-    start_date_local, start_date_utc, end_date_local, end_date_utc,
-    start_date_id, end_date_id, is_active, is_deleted,
-    creation_ts, creator_user, last_modified, last_user,
-    NULL::varchar(1)   AS change_type,
-    NULL::timestamptz  AS au_operation_ts
-FROM application_data.lk_target
-WHERE false;
-COMMENT ON TABLE application_audit.au_lk_target IS 'Audit table for application_data.lk_target (plant, line, kpi, target value, validity interval).';
 
-CREATE OR REPLACE FUNCTION application_data.fn_audit_lk_target()
-RETURNS trigger
-LANGUAGE plpgsql
-AS $fn$
-BEGIN
-    IF TG_OP = 'INSERT' THEN
-        INSERT INTO application_audit.au_lk_target
-        SELECT NEW.*, 'I', timezone('UTC', current_timestamp);
-        RETURN NEW;
-    ELSIF TG_OP = 'UPDATE' THEN
-        INSERT INTO application_audit.au_lk_target
-        SELECT OLD.*, 'U', timezone('UTC', current_timestamp);
-        RETURN NEW;
-    ELSIF TG_OP = 'DELETE' THEN
-        INSERT INTO application_audit.au_lk_target
-        SELECT OLD.*, 'D', timezone('UTC', current_timestamp);
-        RETURN OLD;
-    END IF;
-    RETURN NULL;
-END;
-$fn$;
-
-DROP TRIGGER IF EXISTS tr_audit_lk_target ON application_data.lk_target;
-CREATE TRIGGER tr_audit_lk_target
-    AFTER INSERT OR UPDATE OR DELETE ON application_data.lk_target
-    FOR EACH ROW
-    EXECUTE FUNCTION application_data.fn_audit_lk_target();
 
 DROP PROCEDURE IF EXISTS application_data.sync_ft_kpi_target_from_lk_target(int8, varchar);
 DROP PROCEDURE IF EXISTS application_data.sync_ft_kpi_target_from_lk_target(int8, varchar, numeric, numeric);
